@@ -12,7 +12,7 @@
 #include <util/delay.h>
 
 
-#define MAX_CHAR   16
+#define MAX_CHAR   24
 
 float32  APP_f32InfixEval(uint8* A_u8Input,uint8* A_u8NumOfChar);
 float32 APP_f32TwoOperandEval(float32 A_u8operandA,float32 A_u8operandB,uint8 A_u8Opertor);
@@ -68,7 +68,7 @@ HLCD_vInit();
 		}
 
 
-		if(!APP_u8CheckExpValidity(LR_u8Str))
+		if(APP_u8CheckExpValidity(LR_u8Str))
 		{
 
         HLCD_RowCol_Select(1,0);
@@ -266,6 +266,7 @@ uint8 APP_u8CheckExpValidity(uint8* A_u8Input)
 		if(APP_u8Check_op_num(A_u8Input[0])&&A_u8Input[0]!='.')
 					L_u8Checker=1;
 		else
+		{
 		for(uint8 i=0;i<MAX_CHAR;i++)
 		{
 			if(APP_u8Check_op_num(A_u8Input[i])&&A_u8Input[i]!='.')
@@ -280,6 +281,7 @@ uint8 APP_u8CheckExpValidity(uint8* A_u8Input)
 			}
 
 
+		}
 		}
 		return L_u8Checker;
 
